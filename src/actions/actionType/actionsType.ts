@@ -1,0 +1,5 @@
+export enum ActionType {
+	SEARCH_NEWS = 'SEARCH_NEWS',
+	GET_LATEST_NEWS = 'GET_LATEST_NEWS',
+	CLEAR_NEWS = 'CLEAR_NEWS',
+}
