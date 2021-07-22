@@ -1,15 +1,14 @@
 import { ActionType } from './actionType/actionsType';
 
 export type news = {
-	news:{
 	author: string;
 	title: string;
 	description: string;
 	image: string;
-	}
 };
 
 export interface Payload {
+	money:news[],
 	make_money: news[];
 	save_money: news[];
 	debt: news[];

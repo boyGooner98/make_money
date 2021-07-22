@@ -5,15 +5,13 @@ import { Actions, Payload, news } from './index';
 
 //Getting the latest news for all the pages
 
-
-
 export const getNews = () => async (dispatch: Dispatch<Actions>) => {
 	try {
-		const uri_make_money =
-			'https://newsapi.org/v2/everything?q=make%20money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
-		let response = await axios.get(uri_make_money);
-		const make_money = response.data.articles.map((article: any) => {
-			const News = {
+		const uri_money =
+			'https://newsapi.org/v2/everything?q=money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
+		let response = await axios.get(uri_money);
+		const money: news[] = response.data.articles.map((article: any) => {
+			const News: news = {
 				author: article.author,
 				title: article.title,
 				description: article.description,
@@ -21,13 +19,25 @@ export const getNews = () => async (dispatch: Dispatch<Actions>) => {
 			};
 			return News;
 		});
-   console.log(make_money);
+
+		const uri_make_money =
+			'https://newsapi.org/v2/everything?q=make%10money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
+		response = await axios.get(uri_make_money);
+		const make_money: news[] = response.data.articles.map((article: any) => {
+			const News: news = {
+				author: article.author,
+				title: article.title,
+				description: article.description,
+				image: article.urlToImage,
+			};
+			return News;
+		});
 		const uri_save_money =
-			'https://newsapi.org/v2/everything?q=save%20money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
+			'https://newsapi.org/v2/everything?q=save%10money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
 
 		response = await axios.get(uri_save_money);
-		const save_money = response.data.articles.map((article: any) => {
-			const News= {
+		const save_money: news[] = response.data.articles.map((article: any) => {
+			const News: news = {
 				author: article.author,
 				title: article.title,
 				description: article.description,
@@ -37,11 +47,11 @@ export const getNews = () => async (dispatch: Dispatch<Actions>) => {
 		});
 
 		const uri_invest_money =
-			'https://newsapi.org/v2/everything?q=invest%20money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
+			'https://newsapi.org/v2/everything?q=invest%10money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
 
 		response = await axios.get(uri_invest_money);
-		const invest_money = response.data.articles.map((article: any) => {
-			const News= {
+		const invest_money: news[] = response.data.articles.map((article: any) => {
+			const News: news = {
 				author: article.author,
 				title: article.title,
 				description: article.description,
@@ -50,11 +60,11 @@ export const getNews = () => async (dispatch: Dispatch<Actions>) => {
 			return News;
 		});
 		const uri_debt =
-			'https://newsapi.org/v2/everything?q=save%20money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
+			'https://newsapi.org/v2/everything?q=save%10money&from=2021-07-21&sortBy=latest&apiKey=4241ade4ca534f1285ee43dc167c9af1';
 
 		response = await axios.get(uri_debt);
-		const debt = response.data.articles.map((article: any) => {
-			const News = {
+		const debt: news[] = response.data.articles.map((article: any) => {
+			const News: news = {
 				author: article.author,
 				title: article.title,
 				description: article.description,
@@ -66,6 +76,7 @@ export const getNews = () => async (dispatch: Dispatch<Actions>) => {
 		dispatch({
 			type: ActionType.GET_LATEST_NEWS,
 			payload: {
+				money,
 				make_money,
 				save_money,
 				debt,
@@ -76,8 +87,5 @@ export const getNews = () => async (dispatch: Dispatch<Actions>) => {
 		console.log(err.message);
 	}
 };
-
-
-
 
 //Clearing the news of everything

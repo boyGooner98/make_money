@@ -2,6 +2,7 @@ import {news,Actions} from '../actions';
 import {ActionType} from '../actions/actionType/actionsType';
 
 interface News {
+	money:news[],
 	latestMakeMoney: news[];
 	latestSaveMoney: news[];
 	latestInvestMoney: news[];
@@ -11,6 +12,7 @@ interface News {
 }
 
 const initialState = {
+	money:[],
 	latestMakeMoney: [],
 	latestSaveMoney: [],
 	latestInvestMoney: [],
@@ -31,12 +33,15 @@ const reducer = (state: News = initialState, actions: Actions): News => {
 				error: null,
 			};
 		case ActionType.GET_LATEST_NEWS:
-			return {
+       const data = actions.payload;
+			 console.log(data);
+		return {
 				...state,
-				latestMakeMoney: actions.payload.make_money,
-				latestInvestMoney: actions.payload.invest_money,
-				latestDebt: actions.payload.debt,
-				latestSaveMoney: actions.payload.save_money,
+				money:data.money,
+				latestMakeMoney: data.make_money,
+				latestInvestMoney: data.invest_money,
+				latestDebt: data.debt,
+				latestSaveMoney: data.save_money,
 				loading: false,
 			};
 		case ActionType.CLEAR_NEWS:
